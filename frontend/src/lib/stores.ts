@@ -4,6 +4,7 @@ import { writable } from 'svelte/store';
 export interface User {
     username: string;
     balance: number;
+    isAdmin: boolean;
 }
 
 // Store for the current user (null if not logged in)
@@ -11,9 +12,12 @@ export const user = writable<User | null>(null);
 
 // Mock function to login
 export const login = (username: string) => {
+    // If username is 'admin', give them admin rights
+    const isAdmin = username.toLowerCase() === 'admin';
     user.set({
         username,
-        balance: 1000 // Give them some starting money
+        balance: isAdmin ? 100000 : 1000, // Rich admin
+        isAdmin
     });
 };
 

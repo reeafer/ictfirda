@@ -61,6 +61,99 @@
 	let betAmount = $state('');
 	let selectedGameId = $state(games[0].id);
 
+	// --- COMMUNITY / ADMIN BETTING LOGIC ---
+	interface BettingEvent {
+		id: number;
+		title: string;
+		optionA: string;
+		optionB: string;
+		poolA: number;
+		poolB: number;
+		status: 'OPEN' | 'CLOSED';
+	}
+
+	// Default active events (Mock DB)
+	let events = $state<BettingEvent[]>([
+		{
+			id: 1,
+			title: 'Gaat Ferdi slagen?',
+			optionA: 'Ja, natuurlijk',
+			optionB: 'Nee, helaas',
+			poolA: 500,
+			poolB: 120,
+			status: 'OPEN'
+		}
+	]);
+
+	// Admin Panel State
+	let newEventTitle = $state('');
+	let newOptionA = $state('');
+	let newOptionB = $state('');
+
+	function createEvent(e: Event) {
+		e.preventDefault();
+		if (!newEventTitle || !newOptionA || !newOptionB) return;
+
+		events = [
+			{
+				id: Date.now(),
+				title: newEventTitle,
+				optionA: newOptionA,
+				optionB: newOptionB,
+				poolA: 0,
+				poolB: 0,
+				status: 'OPEN'
+			},
+			...events
+		];
+
+		// Reset form
+		newEventTitle = '';
+		newOptionA = '';
+		newOptionB = '';
+		alert('Betting Event Created Successfully!');
+	}
+
+	// User Betting on Event
+	let eventBetAmount = $state('');
+
+	function placeEventBet(event: BettingEvent, choice: 'A' | 'B') {
+		if (!$user) {
+			alert('Please log in first!');
+			return;
+		}
+
+		const amount = parseFloat(eventBetAmount);
+		if (!amount || amount <= 0) {
+			alert('Please enter a valid amount');
+			return;
+		}
+
+		if (amount > $user.balance) {
+			alert('Insufficient balance!');
+			return;
+		}
+
+		// Update pools (mock logic)
+		const eventIndex = events.findIndex((e) => e.id === event.id);
+		if (eventIndex !== -1) {
+			if (choice === 'A') events[eventIndex].poolA += amount;
+			else events[eventIndex].poolB += amount;
+		}
+
+		// Add to recent ticker
+		addBet({
+			id: Date.now(),
+			user: $user.username,
+			amount: `€${amount}`,
+			game: event.title + ` (${choice === 'A' ? event.optionA : event.optionB})`
+		});
+
+		alert(`Bet placed on ${choice === 'A' ? event.optionA : event.optionB} for €${amount}!`);
+		eventBetAmount = '';
+	}
+	// ---------------------------------------
+
 	function placeBet(e: Event) {
 		e.preventDefault();
 
@@ -180,7 +273,7 @@
 						Play Big. <br />
 						<span
 							class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent"
-							>Win Bigger.</span
+							>Win (N)Bigger.</span
 						>
 					</h1>
 					<p class="mx-auto mb-8 max-w-lg text-lg leading-relaxed text-slate-400 md:mx-0">
@@ -226,6 +319,146 @@
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
+
+<!-- COMMUNITY / ADMIN BETTING SECTION -->
+<div class="relative overflow-hidden border-y border-white/5 bg-slate-900 py-12">
+	<div class="pointer-events-none absolute inset-0 bg-emerald-900/10"></div>
+	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="mb-10 text-center">
+			<h2 class="mb-2 text-3xl font-black text-white md:text-4xl">Live Community Bets</h2>
+			<p class="font-medium text-emerald-400">Place your bets on the hottest topics.</p>
+		</div>
+
+		{#if $user}
+			<!-- ADMIN PANEL -->
+			{#if $user.isAdmin}
+				<div
+					class="mb-12 rounded-2xl border border-emerald-500/50 bg-slate-800/80 p-6 shadow-xl shadow-emerald-900/20"
+				>
+					<div class="mb-6 flex items-center gap-3">
+						<span class="rounded bg-emerald-500 px-2 py-1 text-xs font-black text-slate-900"
+							>ADMIN</span
+						>
+						<h3 class="text-xl font-bold text-white">Create New Event</h3>
+					</div>
+					<form onsubmit={createEvent} class="grid items-end gap-4 md:grid-cols-4">
+						<div class="md:col-span-2">
+							<label for="title" class="mb-1 block text-sm font-medium text-slate-400"
+								>Event Question</label
+							>
+							<input
+								type="text"
+								id="title"
+								bind:value={newEventTitle}
+								placeholder="e.g. Will Feyenoord win?"
+								class="w-full rounded-lg border border-slate-600 bg-slate-700 px-4 py-2 text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500"
+							/>
+						</div>
+						<div>
+							<label for="optA" class="mb-1 block text-sm font-medium text-slate-400"
+								>Option 1 (Pro)</label
+							>
+							<input
+								type="text"
+								id="optA"
+								bind:value={newOptionA}
+								placeholder="Yes / Happens"
+								class="w-full rounded-lg border border-slate-600 bg-slate-700 px-4 py-2 text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500"
+							/>
+						</div>
+						<div>
+							<label for="optB" class="mb-1 block text-sm font-medium text-slate-400"
+								>Option 2 (Contra)</label
+							>
+							<input
+								type="text"
+								id="optB"
+								bind:value={newOptionB}
+								placeholder="No / Wont Happen"
+								class="w-full rounded-lg border border-slate-600 bg-slate-700 px-4 py-2 text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500"
+							/>
+						</div>
+						<button
+							type="submit"
+							class="w-full rounded-lg bg-emerald-600 py-3 font-bold text-white shadow-lg transition-colors hover:bg-emerald-500 md:col-span-4"
+						>
+							🚀 Launch Event
+						</button>
+					</form>
+				</div>
+			{/if}
+
+			<!-- ACTIVE EVENTS LIST -->
+			<div class="grid gap-8 md:grid-cols-2">
+				{#each events as event}
+					<div
+						class="overflow-hidden rounded-2xl border border-white/10 bg-slate-800 transition-colors hover:border-emerald-500/50"
+					>
+						<div class="p-6">
+							<div class="mb-4 flex items-start justify-between">
+								<h3 class="text-xl font-bold text-white">{event.title}</h3>
+								<span
+									class="rounded bg-emerald-500/20 px-2 py-1 text-xs font-bold text-emerald-400 uppercase"
+									>Live</span
+								>
+							</div>
+
+							<div class="mb-6 grid grid-cols-2 gap-4">
+								<button
+									onclick={() => placeEventBet(event, 'A')}
+									class="group relative rounded-xl border border-slate-600 bg-slate-700 p-4 transition-all hover:border-emerald-500/50 hover:bg-emerald-900/30"
+								>
+									<div class="mb-1 text-sm text-slate-400">Option A</div>
+									<div class="text-lg font-bold text-white group-hover:text-emerald-400">
+										{event.optionA}
+									</div>
+									<div class="mt-2 font-mono text-xs text-emerald-500">Pool: €{event.poolA}</div>
+								</button>
+								<button
+									onclick={() => placeEventBet(event, 'B')}
+									class="group relative rounded-xl border border-slate-600 bg-slate-700 p-4 transition-all hover:border-red-500/50 hover:bg-red-900/30"
+								>
+									<div class="mb-1 text-sm text-slate-400">Option B</div>
+									<div class="text-lg font-bold text-white group-hover:text-red-400">
+										{event.optionB}
+									</div>
+									<div class="mt-2 font-mono text-xs text-red-500">Pool: €{event.poolB}</div>
+								</button>
+							</div>
+
+							<div class="flex items-center gap-4">
+								<div class="relative flex-grow">
+									<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+										<span class="text-slate-500">€</span>
+									</div>
+									<input
+										type="number"
+										bind:value={eventBetAmount}
+										placeholder="Your wager..."
+										class="w-full rounded-lg border border-slate-700 bg-slate-900 py-2 pl-8 text-white focus:border-emerald-500 focus:ring-emerald-500"
+									/>
+								</div>
+								<span class="text-xs text-slate-500">Select an option above to bet</span>
+							</div>
+						</div>
+					</div>
+				{/each}
+			</div>
+		{:else}
+			<!-- LOGGED OUT STATE FOR EVENTS -->
+			<div class="rounded-2xl border border-white/5 bg-slate-800/50 p-8 text-center">
+				<p class="mb-4 text-lg text-slate-300">
+					Log in to view active community bets and place your wagers.
+				</p>
+				<a
+					href="/login"
+					class="inline-block rounded-lg bg-emerald-600 px-6 py-2 font-bold text-white transition-colors hover:bg-emerald-500"
+					>Log In to Bet</a
+				>
+			</div>
+		{/if}
 	</div>
 </div>
 
