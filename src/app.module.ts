@@ -23,7 +23,13 @@ import { JwtStrategy } from './jwt.strategy';
       entities: [User, BettingEvent, Game, GameSession, Transaction],
       synchronize: true, // Auto-create tables (DEV ONLY)
     }),
-    TypeOrmModule.forFeature([User, BettingEvent, Game, GameSession, Transaction]),
+    TypeOrmModule.forFeature([
+      User,
+      BettingEvent,
+      Game,
+      GameSession,
+      Transaction,
+    ]),
     PassportModule,
     JwtModule.register({
       secret: 'SUPER_SECRET_KEY_123',
@@ -33,4 +39,4 @@ import { JwtStrategy } from './jwt.strategy';
   controllers: [AppController],
   providers: [AppService, JwtStrategy],
 })
-export class AppModule { }
+export class AppModule {}

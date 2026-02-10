@@ -1,27 +1,35 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn } from 'typeorm';
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+  CreateDateColumn,
+} from 'typeorm';
 import { User } from './user.entity';
 
 @Entity('transactions')
 export class Transaction {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    user_id: number;
+  @Column()
+  user_id: number;
 
-    @Column('decimal', { precision: 10, scale: 2 })
-    amount: number;
+  @Column('decimal', { precision: 10, scale: 2 })
+  amount: number;
 
-    @Column()
-    type: string; // 'DEPOSIT', 'WITHDRAWAL', 'BET', 'WIN'
+  @Column()
+  type: string; // 'DEPOSIT', 'WITHDRAWAL', 'BET', 'WIN'
 
-    @Column('text', { nullable: true })
-    description: string;
+  @Column('text', { nullable: true })
+  description: string;
 
-    @CreateDateColumn()
-    created_at: Date;
+  @CreateDateColumn()
+  created_at: Date;
 
-    @ManyToOne(() => User)
-    @JoinColumn({ name: 'user_id' })
-    user: User;
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 }
