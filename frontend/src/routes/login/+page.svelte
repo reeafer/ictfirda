@@ -6,91 +6,147 @@
 	let password = $state('');
 	let loading = $state(false);
 
-	function handleLogin(e: Event) {
+	async function handleLogin(e: Event) {
 		e.preventDefault();
 		loading = true;
 
-		// Simulate API call
-		setTimeout(() => {
-			login(username);
+		try {
+			const res = await fetch(`http://${window.location.hostname}:3000/login`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ username, password })
+			});
+			const result = await res.json();
+
+			if (result.success === false) {
+				alert('FOUTJE: ' + result.message);
+				loading = false;
+				return;
+			}
+
+			login(result);
 			loading = false;
 			goto('/');
-		}, 1000);
+		} catch (e) {
+			console.error(e);
+			loading = false;
+			alert('KONING FERDIN ZEGT NEE. (Server stuk) HATSA!');
+		}
 	}
 </script>
 
-<div class="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-	<div
-		class="w-full max-w-md space-y-8 rounded-2xl border border-white/5 bg-slate-800/50 p-8 backdrop-blur-sm"
-	>
-		<div>
-			<h2 class="mt-6 text-center text-3xl font-extrabold text-white">Log in to FirdaBet</h2>
-			<p class="mt-2 text-center text-sm text-slate-400">
-				Or
-				<a href="/signup" class="font-medium text-emerald-400 hover:text-emerald-300">
-					create a new account
-				</a>
+<div
+	class="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-4 py-20"
+>
+	<!-- Background (Subtler) -->
+	<div class="absolute inset-0 z-0">
+		<div
+			class="h-full w-full bg-[radial-gradient(circle_at_center,_#7e22ce_0%,_#000_80%)] opacity-20"
+		></div>
+	</div>
+
+	<div class="relative z-10 w-full max-w-lg">
+		<div class="mb-12 text-center">
+			<div
+				class="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-tr from-purple-600 to-slate-900 text-4xl font-black text-white shadow-2xl"
+			>
+				👑
+			</div>
+			<h2
+				class="animate-shake-slow text-6xl font-black tracking-tighter text-white uppercase italic"
+			>
+				IN<span class="text-[#fbbf24]">LOGGEN</span>
+			</h2>
+			<p class="mt-4 text-[10px] font-black tracking-[0.5em] text-slate-700 uppercase italic">
+				BIJ DE KONING. GEWOON DOEN. HATSA!
 			</p>
 		</div>
-		<form class="mt-8 space-y-6" onsubmit={handleLogin}>
-			<div class="-space-y-px rounded-md shadow-sm">
-				<div class="mb-4">
-					<label for="username" class="sr-only">Username</label>
+
+		<div
+			class="relative overflow-hidden rounded-[4rem] border border-slate-900 bg-[#050505] p-12 shadow-2xl"
+		>
+			<form class="relative z-10 space-y-8" onsubmit={handleLogin}>
+				<div>
+					<label
+						for="username"
+						class="mb-4 block text-[9px] font-black tracking-[0.6em] text-slate-500 uppercase"
+						>GEBRUIKERSNAAM</label
+					>
 					<input
 						id="username"
-						name="username"
 						type="text"
 						required
 						bind:value={username}
-						class="relative block w-full appearance-none rounded-none rounded-t-md border border-slate-600 bg-slate-700 px-3 py-3 text-white placeholder-slate-500 focus:z-10 focus:border-emerald-500 focus:ring-emerald-500 focus:outline-none sm:text-sm"
-						placeholder="Username"
+						class="block w-full rounded-2xl border-2 border-slate-900 bg-slate-950 px-6 py-5 text-lg font-black text-white transition-all focus:border-[#fbbf24] focus:outline-none"
+						placeholder="gok_meester123"
 					/>
 				</div>
+
 				<div>
-					<label for="password" class="sr-only">Password</label>
+					<label
+						for="password"
+						class="mb-4 block text-[9px] font-black tracking-[0.6em] text-slate-500 uppercase"
+						>WACHTWOORD</label
+					>
 					<input
 						id="password"
-						name="password"
 						type="password"
 						required
 						bind:value={password}
-						class="relative block w-full appearance-none rounded-none rounded-b-md border border-slate-600 bg-slate-700 px-3 py-3 text-white placeholder-slate-500 focus:z-10 focus:border-emerald-500 focus:ring-emerald-500 focus:outline-none sm:text-sm"
-						placeholder="Password"
+						class="block w-full rounded-2xl border-2 border-slate-900 bg-slate-950 px-6 py-5 text-lg font-black text-white transition-all focus:border-purple-600 focus:outline-none"
+						placeholder="••••••••"
 					/>
 				</div>
-			</div>
 
-			<div class="flex items-center justify-between">
-				<div class="flex items-center">
-					<input
-						id="remember-me"
-						name="remember-me"
-						type="checkbox"
-						class="h-4 w-4 rounded border-slate-600 bg-slate-700 text-emerald-600 focus:ring-emerald-500"
-					/>
-					<label for="remember-me" class="ml-2 block text-sm text-slate-400"> Remember me </label>
+				<div class="flex items-center justify-between">
+					<div class="flex items-center">
+						<input
+							id="remember-me"
+							type="checkbox"
+							class="h-5 w-5 rounded border-2 border-slate-900 bg-slate-950 text-[#fbbf24] focus:ring-[#fbbf24]"
+						/>
+						<label
+							for="remember-me"
+							class="ml-3 block text-[9px] font-black tracking-widest text-slate-700 uppercase"
+						>
+							ONTHOUD MIJ
+						</label>
+					</div>
+
+					<div class="text-[9px] font-black tracking-[0.4em] uppercase">
+						<a href="/forgot-password" class="text-slate-800 transition-all hover:text-[#fbbf24]">
+							WACHTWOORD KWIJT?
+						</a>
+					</div>
 				</div>
 
-				<div class="text-sm">
-					<a href="#" class="font-medium text-emerald-400 hover:text-emerald-300">
-						Forgot your password?
-					</a>
-				</div>
-			</div>
-
-			<div>
 				<button
 					type="submit"
 					disabled={loading}
-					class="group relative flex w-full justify-center rounded-md border border-transparent bg-emerald-600 px-4 py-3 text-sm font-bold text-white transition-all hover:bg-emerald-700 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+					class="group relative w-full overflow-hidden rounded-3xl bg-gradient-to-r from-purple-700 to-slate-900 py-6 text-xl font-black text-white uppercase shadow-lg transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50"
 				>
-					{#if loading}
-						Logging in...
-					{:else}
-						Sign in
-					{/if}
+					<span class="relative z-10">
+						{#if loading}
+							EVEN WACHTEN...
+						{:else}
+							GAAN MET DIE BANAAN 🚀
+						{/if}
+					</span>
 				</button>
+			</form>
+
+			<div class="relative z-10 mt-12 border-t border-slate-900 pt-10 text-center">
+				<p class="text-[9px] font-black tracking-[0.6em] text-slate-700 uppercase">
+					NOG GEEN ACCOUNT?
+					<a href="/signup" class="ml-2 text-[#fbbf24] underline transition-all">REGISTREER NU</a>
+				</p>
 			</div>
-		</form>
+		</div>
 	</div>
 </div>
+
+<style>
+	:global(body) {
+		background-color: black;
+	}
+</style>

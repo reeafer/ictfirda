@@ -7,10 +7,12 @@ async function bootstrap() {
 
   // ALLOW FRONTEND REQUESTS
   app.enableCors({
-    origin: 'http://localhost:5173', // Your frontend URL
+    origin: true, // Allow all origins in dev, or specify the IPs
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
   });
 
-  await app.listen(3000);
+  await app.listen(3000, '0.0.0.0');
+  console.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();

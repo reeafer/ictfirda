@@ -1,107 +1,126 @@
-<div class="relative min-h-screen overflow-hidden">
-	<!-- Background Luxury Effect -->
-	<div class="absolute inset-0 bg-slate-900">
+<div class="relative min-h-screen overflow-hidden bg-black">
+	<!-- Background Luxury Effect (Subtler) -->
+	<div class="absolute inset-0">
 		<div
-			class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"
+			class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"
 		></div>
 		<div
-			class="pointer-events-none absolute top-0 left-1/2 h-[600px] w-full -translate-x-1/2 rounded-full bg-amber-500/10 blur-[150px]"
+			class="pointer-events-none absolute top-0 left-1/2 h-[1000px] w-full -translate-x-1/2 rounded-full bg-purple-900/10 blur-[200px]"
 		></div>
 	</div>
 
-	<div class="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-		<div class="mb-16 text-center">
-			<h1
-				class="mb-6 bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 bg-clip-text text-5xl font-black text-transparent md:text-7xl"
+	<div class="relative mx-auto max-w-7xl px-4 py-32 sm:px-6 lg:px-8">
+		<div class="mb-24 text-center">
+			<div
+				class="mb-8 inline-block rounded-2xl border border-yellow-500/20 bg-yellow-500/10 px-8 py-3 text-[10px] font-black tracking-[0.6em] text-[#fbbf24] uppercase"
 			>
-				Firda VIP Club
+				KONING FERDIN'S ELITE
+			</div>
+			<h1
+				class="animate-shake-slow mb-8 bg-gradient-to-r from-purple-600 via-[#fbbf24] to-red-600 bg-clip-text text-7xl font-black tracking-tighter text-transparent uppercase italic md:text-9xl"
+			>
+				WINNAARS CLUB
 			</h1>
-			<p class="mx-auto max-w-2xl text-xl text-amber-100/60">
-				Exclusive rewards for elite players. Unlock a world of luxury, personal service, and higher
-				limits.
+			<p
+				class="mx-auto max-w-3xl text-2xl font-black tracking-tight text-slate-700 uppercase italic"
+			>
+				STOP MET KIJKEN, BEGIN MET WINNEN. DE TAS WORDT GEHAALD. FR FR. HATSA!
 			</p>
 		</div>
 
-		<div class="grid gap-8 md:grid-cols-3">
-			<!-- Silver -->
+		<div class="grid gap-12 md:grid-cols-3">
+			<!-- Tier 1: BROKKO -->
 			<div
-				class="relative rounded-3xl border border-slate-700 bg-gradient-to-b from-slate-800 to-slate-900 p-8"
+				class="group relative rounded-[4rem] border border-slate-900 bg-[#050505] p-12 shadow-xl transition-all hover:border-red-900/20"
 			>
-				<div class="mb-4 text-xl font-bold text-slate-400">SILVER</div>
-				<div class="mb-6 text-4xl">🥈</div>
-				<ul class="mb-8 space-y-4 text-sm text-slate-300">
+				<div class="mb-6 text-[9px] font-black tracking-[0.6em] text-slate-800 uppercase">
+					NIVEAU 0: BROKKO
+				</div>
+				<div class="mb-10 text-7xl">🤡</div>
+				<ul
+					class="mb-12 space-y-6 text-xs font-black tracking-[0.4em] text-slate-700 uppercase italic"
+				>
 					<li class="flex items-center gap-3">
-						<span class="text-emerald-400">✓</span> Weekly Bonuses
+						<span class="text-red-900">✕</span> GEEN GELD
 					</li>
 					<li class="flex items-center gap-3">
-						<span class="text-emerald-400">✓</span> Priority Support
+						<span class="text-red-900">✕</span> NO CAP RATIO
 					</li>
 					<li class="flex items-center gap-3">
-						<span class="text-emerald-400">✓</span> Birthday Bonus
+						<span class="text-emerald-900">✓</span> JE MAG KIJKEN
 					</li>
 				</ul>
-				<button
-					class="w-full rounded-xl bg-slate-700 py-3 font-bold text-white transition-colors hover:bg-slate-600"
-					>Current Level</button
+				<div
+					class="w-full rounded-2xl border border-slate-900 bg-slate-950 py-5 text-center text-[9px] font-black text-slate-800 uppercase"
 				>
+					JIJ BENT HIER
+				</div>
 			</div>
 
-			<!-- Gold -->
+			<!-- Tier 2: STRIJDER -->
 			<div
-				class="relative transform rounded-3xl border border-amber-500/30 bg-gradient-to-b from-slate-800 to-slate-900 p-8 shadow-2xl shadow-amber-900/20 md:-translate-y-6"
+				class="group relative scale-105 transform rounded-[4rem] border border-purple-900/40 bg-[#050505] p-12 shadow-2xl md:-translate-y-8"
 			>
 				<div
-					class="absolute top-0 right-0 rounded-tr-2xl rounded-bl-xl bg-amber-500 p-2 text-xs font-bold text-slate-900"
+					class="absolute -top-5 left-1/2 -translate-x-1/2 rounded-2xl bg-purple-700 px-8 py-2 text-[9px] font-black tracking-[0.5em] text-white uppercase shadow-lg"
 				>
-					POPULAR
+					MEEST GEKOZEN
 				</div>
-				<div class="mb-4 text-xl font-bold text-amber-400">GOLD</div>
-				<div class="mb-6 text-4xl">👑</div>
-				<ul class="mb-8 space-y-4 text-sm text-slate-300">
+				<div class="mb-6 text-[9px] font-black tracking-[0.6em] text-purple-600 uppercase">
+					NIVEAU 1: STRIJDER
+				</div>
+				<div class="mb-10 text-7xl">💸</div>
+				<ul
+					class="mb-12 space-y-6 text-xs font-black tracking-[0.4em] text-slate-500 uppercase italic"
+				>
 					<li class="flex items-center gap-3">
-						<span class="text-amber-400">✓</span> All Silver Benefits
+						<span class="text-[#fbbf24]">✓</span> WEKELIJKSE BONUS
 					</li>
 					<li class="flex items-center gap-3">
-						<span class="text-amber-400">✓</span> Personal Manager
+						<span class="text-[#fbbf24]">✓</span> GEEN VERLIES DAGEN
 					</li>
 					<li class="flex items-center gap-3">
-						<span class="text-amber-400">✓</span> Higher Limits
-					</li>
-					<li class="flex items-center gap-3">
-						<span class="text-amber-400">✓</span> Monthly Cashback
+						<span class="text-[#fbbf24]">✓</span> VERJAARDAGS TAS
 					</li>
 				</ul>
 				<button
-					class="w-full rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 py-3 font-bold text-slate-900 transition-all hover:shadow-lg"
-					>Unlock Gold</button
+					class="w-full rounded-2xl bg-purple-700 py-5 text-sm font-black tracking-[0.3em] text-white uppercase transition-all hover:bg-purple-600"
+					>PAK DE TAS</button
 				>
 			</div>
 
-			<!-- Platinum -->
+			<!-- Tier 3: KONING -->
 			<div
-				class="relative rounded-3xl border border-slate-600 bg-gradient-to-b from-slate-800 to-slate-900 p-8"
+				class="group relative rounded-[4rem] border border-yellow-900/20 bg-[#050505] p-12 shadow-xl transition-all hover:border-yellow-600/30"
 			>
-				<div class="mb-4 text-xl font-bold text-slate-200">PLATINUM</div>
-				<div class="mb-6 text-4xl">💎</div>
-				<ul class="mb-8 space-y-4 text-sm text-slate-300">
+				<div class="mb-6 text-[9px] font-black tracking-[0.6em] text-[#fbbf24] uppercase">
+					NIVEAU 2: KONINKLIJK
+				</div>
+				<div class="mb-10 text-7xl">🍷</div>
+				<ul
+					class="mb-12 space-y-6 text-xs font-black tracking-[0.4em] text-slate-500 uppercase italic"
+				>
 					<li class="flex items-center gap-3">
-						<span class="text-indigo-400">✓</span> All Gold Benefits
+						<span class="text-[#fbbf24]">✓</span> FERDIN'S NUMMER
 					</li>
 					<li class="flex items-center gap-3">
-						<span class="text-indigo-400">✓</span> Exclusive Events
+						<span class="text-[#fbbf24]">✓</span> ONEINDIG GOKKEN
 					</li>
 					<li class="flex items-center gap-3">
-						<span class="text-indigo-400">✓</span> Luxury Gifts
-					</li>
-					<li class="flex items-center gap-3">
-						<span class="text-indigo-400">✓</span> Instant Withdrawals
+						<span class="text-[#fbbf24]">✓</span> FLEX RECHTEN
 					</li>
 				</ul>
 				<button
-					class="w-full rounded-xl bg-slate-700 py-3 font-bold text-white transition-colors hover:bg-slate-600"
-					>By Invitation</button
+					class="w-full rounded-2xl border border-[#fbbf24] py-5 text-sm font-black tracking-[0.3em] text-[#fbbf24] uppercase transition-all hover:bg-[#fbbf24] hover:text-slate-950"
+					>ALLEEN OP UITNODIGING</button
 				>
 			</div>
 		</div>
 	</div>
 </div>
+
+<style>
+	:global(body) {
+		background-color: black;
+	}
+</style>

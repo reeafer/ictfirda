@@ -21,100 +21,148 @@
 		logout();
 		isProfileMenuOpen = false;
 	}
+
+	const brainrotEmojis = [
+		'🔥',
+		'💀',
+		'💸',
+		'🤑',
+		'💎',
+		'🚀',
+		'🤡',
+		'👽',
+		'👑',
+		'🤌',
+		'🍷',
+		'🍌',
+		'🍑',
+		'🥵',
+		'💦'
+	];
 </script>
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<title>FirdaBet - Premium Gambling</title>
-	<meta name="description" content="The best place to win big in Firda." />
+	<title>KONINGBET - Oefenen met Gokken</title>
+	<meta
+		name="description"
+		content="Oefen je gokverslaving met Koning Ferdin. Geen echt geld, wel de volledige ervaring. Hatsa!"
+	/>
 </svelte:head>
 
-<div
-	class="flex min-h-screen flex-col bg-slate-900 text-white selection:bg-emerald-500 selection:text-white"
->
+<div class="relative flex min-h-screen flex-col overflow-hidden bg-[#050811] text-slate-100">
+	<!-- Sensory Overload Overlays (Subtler) -->
+	<div class="pointer-events-none fixed inset-0 z-0 overflow-hidden opacity-10 select-none">
+		<div
+			class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#7e22ce_0%,_transparent_60%)]"
+		></div>
+		{#each Array(20) as _, i}
+			<div
+				class="animate-chaotic absolute text-4xl"
+				style="top: {Math.random() * 100}%; left: {Math.random() * 100}%; 
+                       animation-delay: {Math.random() * 10}s; 
+                       animation-duration: {10 + Math.random() * 5}s;
+                       opacity: {0.05 + Math.random() * 0.2}"
+			>
+				{brainrotEmojis[Math.floor(Math.random() * brainrotEmojis.length)]}
+			</div>
+		{/each}
+	</div>
+
+	<!-- Top Bar -->
+	<div
+		class="animate-shake-slow relative z-50 bg-gradient-to-r from-purple-800 via-yellow-600 to-purple-800 py-2 text-center text-[11px] font-black tracking-[0.4em] text-black uppercase"
+	>
+		🔥 KONING FERDIN KIJKT MEE - OEFEN HIER JE GOKKUNSTEN - HATSA 🔥
+	</div>
+
 	<!-- Navbar -->
-	<nav class="sticky top-0 z-50 border-b border-white/10 bg-slate-900/80 backdrop-blur-md">
+	<nav class="sticky top-0 z-50 border-b border-purple-500/20 bg-[#050811]/95 backdrop-blur-xl">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-			<div class="flex h-16 items-center justify-between">
+			<div class="flex h-20 items-center justify-between">
 				<!-- Logo -->
-				<div class="flex-shrink-0">
-					<a
-						href="/"
-						class="bg-gradient-to-r from-emerald-400 to-cyan-500 bg-clip-text text-2xl font-black tracking-tighter text-transparent"
-					>
-						FIRDABET
+				<div class="flex items-center gap-4">
+					<a href="/" class="group flex items-center gap-2">
+						<div
+							class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-tr from-purple-600 to-yellow-500 font-black text-white shadow-lg"
+						>
+							KF
+						</div>
+						<span class="text-2xl font-black tracking-tighter text-white uppercase italic">
+							KONING<span class="text-[#fbbf24]">BET</span>
+						</span>
 					</a>
 				</div>
 
 				<!-- Desktop Menu -->
 				<div class="hidden md:block">
-					<div class="ml-10 flex items-baseline space-x-8">
+					<div class="ml-10 flex items-baseline space-x-10">
 						<a
 							href="/"
-							class="rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-emerald-400"
-							>Home</a
+							class="text-xs font-black tracking-widest text-slate-400 uppercase transition-colors hover:text-white"
+							>HOME</a
 						>
 						<a
 							href="/games"
-							class="rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-emerald-400"
-							>Games</a
-						>
-						<a
-							href="/live"
-							class="rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-emerald-400"
-							>Live Casino</a
+							class="text-xs font-black tracking-widest text-slate-400 uppercase transition-colors hover:text-white"
+							>SPELLEN</a
 						>
 						<a
 							href="/promotions"
-							class="rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-emerald-400"
-							>Promotions</a
+							class="text-xs font-black tracking-widest text-slate-400 uppercase transition-colors hover:text-white"
+							>CASHBACK 💸</a
 						>
 						<a
 							href="/vip"
-							class="rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-emerald-400"
-							>VIP</a
+							class="text-xs font-black tracking-widest text-slate-400 uppercase transition-colors hover:text-white"
+							>VIP CLUB 👑</a
 						>
 					</div>
 				</div>
 
-				<!-- Auth / Profile Buttons -->
+				<!-- Auth / Profile -->
 				<div class="hidden md:block">
-					<div class="ml-4 flex items-center space-x-4 md:ml-6">
+					<div class="flex items-center space-x-6">
 						{#if $user}
 							<div class="relative">
 								<button
 									onclick={toggleProfileMenu}
-									class="flex items-center gap-3 text-sm focus:outline-none"
+									class="flex items-center gap-3 rounded-xl border border-purple-500/20 bg-slate-900/50 p-1.5 pr-4 transition-all hover:bg-purple-500/10"
 								>
-									<div class="hidden text-right lg:block">
-										<div class="font-bold text-white">{$user.username}</div>
-										<div class="font-mono text-emerald-400">€{$user.balance.toFixed(2)}</div>
-									</div>
 									<div
-										class="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 text-lg font-bold"
+										class="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-600 font-bold text-white uppercase"
 									>
-										{$user.username[0].toUpperCase()}
+										{$user.username[0]}
+									</div>
+									<div class="text-left">
+										<div class="text-[10px] leading-none font-bold text-slate-400">
+											{$user.username}
+										</div>
+										<div class="mt-1 text-xs leading-none font-black text-[#fbbf24]">
+											€{$user.balance.toFixed(0)}
+										</div>
 									</div>
 								</button>
 
 								{#if isProfileMenuOpen}
 									<div
-										class="ring-opacity-5 absolute right-0 z-50 mt-2 w-48 rounded-xl border border-white/10 bg-slate-800 py-1 shadow-lg ring-1 ring-black"
+										class="absolute right-0 z-50 mt-4 w-48 overflow-hidden rounded-2xl border border-purple-500/20 bg-slate-950 p-1 shadow-2xl backdrop-blur-xl"
 									>
 										<a
 											href="/profile"
-											class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-											>Your Profile</a
+											class="block px-4 py-2 text-xs font-black text-slate-400 transition-colors hover:bg-purple-600 hover:text-white"
+											>MIJN ACCOUNT</a
 										>
 										<a
 											href="/settings"
-											class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-											>Settings</a
+											class="block px-4 py-2 text-xs font-black text-slate-400 transition-colors hover:bg-purple-600 hover:text-white"
+											>INSTELLINGEN</a
 										>
+										<div class="my-1 border-t border-purple-500/10"></div>
 										<button
 											onclick={handleLogout}
-											class="block w-full px-4 py-2 text-left text-sm text-red-400 hover:bg-slate-700 hover:text-red-300"
-											>Sign out</button
+											class="block w-full px-4 py-2 text-left text-xs font-black text-red-500 transition-colors hover:bg-red-500/10"
+											>UITLOGGEN</button
 										>
 									</div>
 								{/if}
@@ -122,155 +170,84 @@
 						{:else}
 							<a
 								href="/login"
-								class="text-sm font-medium text-slate-300 transition-colors hover:text-white"
-								>Log In</a
+								class="text-xs font-black tracking-widest text-slate-400 uppercase transition-colors hover:text-white"
+								>Inloggen</a
 							>
 							<a
 								href="/signup"
-								class="transform rounded-full bg-gradient-to-r from-emerald-600 to-emerald-400 px-5 py-2 text-sm font-bold text-white shadow-lg shadow-emerald-500/20 transition-all hover:-translate-y-0.5 hover:from-emerald-500 hover:to-emerald-300"
+								class="rounded-xl bg-[#fbbf24] px-6 py-2.5 text-xs font-black text-slate-950 uppercase shadow-lg shadow-yellow-500/10 transition-transform hover:scale-105"
+								>GOKKEN NU</a
 							>
-								Sign Up
-							</a>
 						{/if}
 					</div>
 				</div>
-
-				<!-- Mobile menu button -->
-				<div class="-mr-2 flex md:hidden">
-					<button
-						onclick={toggleMenu}
-						type="button"
-						class="inline-flex items-center justify-center rounded-md p-2 text-slate-400 hover:bg-slate-800 hover:text-white focus:outline-none"
-					>
-						<span class="sr-only">Open main menu</span>
-						<svg
-							class="h-6 w-6"
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
-							/>
-						</svg>
-					</button>
-				</div>
 			</div>
 		</div>
-
-		<!-- Mobile Menu -->
-		{#if isMenuOpen}
-			<div class="border-b border-white/10 bg-slate-900 md:hidden">
-				<div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-					<a href="/" class="block rounded-md px-3 py-2 text-base font-medium text-white">Home</a>
-					<a
-						href="/games"
-						class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white"
-						>Games</a
-					>
-					<a
-						href="/live"
-						class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white"
-						>Live Casino</a
-					>
-					<a
-						href="/promotions"
-						class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white"
-						>Promotions</a
-					>
-				</div>
-				<div class="border-t border-slate-700 pt-4 pb-4">
-					{#if $user}
-						<div class="mb-4 flex items-center px-5">
-							<div class="flex-shrink-0">
-								<div
-									class="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 text-lg font-bold"
-								>
-									{$user.username[0].toUpperCase()}
-								</div>
-							</div>
-							<div class="ml-3">
-								<div class="text-base leading-none font-medium text-white">{$user.username}</div>
-								<div class="mt-1 text-sm leading-none font-medium text-emerald-400">
-									€{$user.balance.toFixed(2)}
-								</div>
-							</div>
-						</div>
-						<button
-							onclick={handleLogout}
-							class="block w-full px-5 py-2 text-left text-base font-medium text-red-400 hover:bg-slate-800 hover:text-white"
-							>Sign out</button
-						>
-					{:else}
-						<div class="flex items-center space-x-4 px-5">
-							<a
-								href="/login"
-								class="w-full rounded-lg border border-slate-600 py-2 text-center text-slate-300"
-								>Log In</a
-							>
-							<a
-								href="/signup"
-								class="w-full rounded-lg bg-emerald-500 py-2 text-center font-bold text-white"
-								>Sign Up</a
-							>
-						</div>
-					{/if}
-				</div>
-			</div>
-		{/if}
 	</nav>
 
-	<!-- Main Content -->
-	<main class="flex-grow">
+	<!-- Main -->
+	<main class="relative z-10 flex-grow">
 		{@render children()}
 	</main>
 
 	<!-- Footer -->
-	<footer class="border-t border-white/5 bg-slate-950 pt-12 pb-8">
+	<footer class="z-50 border-t border-purple-500/20 bg-black pt-20 pb-12">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-			<div class="mb-8 grid grid-cols-2 gap-8 md:grid-cols-4">
-				<div>
-					<h3 class="mb-4 font-bold text-white">Casino</h3>
-					<ul class="space-y-2 text-sm text-slate-400">
-						<li><a href="#" class="hover:text-emerald-400">Slots</a></li>
-						<li><a href="#" class="hover:text-emerald-400">Live Casino</a></li>
-						<li><a href="#" class="hover:text-emerald-400">Table Games</a></li>
-					</ul>
-				</div>
-				<div>
-					<h3 class="mb-4 font-bold text-white">Support</h3>
-					<ul class="space-y-2 text-sm text-slate-400">
-						<li><a href="#" class="hover:text-emerald-400">Help Center</a></li>
-						<li><a href="#" class="hover:text-emerald-400">Contact Us</a></li>
-						<li><a href="#" class="hover:text-emerald-400">Fair Play</a></li>
-						<li><a href="#" class="hover:text-emerald-400">Responsible Gambling</a></li>
-					</ul>
-				</div>
-				<div>
-					<h3 class="mb-4 font-bold text-white">About</h3>
-					<ul class="space-y-2 text-sm text-slate-400">
-						<li><a href="#" class="hover:text-emerald-400">About FirdaBet</a></li>
-						<li><a href="#" class="hover:text-emerald-400">Affiliates</a></li>
-						<li><a href="#" class="hover:text-emerald-400">Terms of Service</a></li>
-					</ul>
-				</div>
-				<div>
-					<h3 class="mb-4 font-bold text-white">Payment Methods</h3>
-					<div class="flex space-x-2 text-2xl text-slate-500">
-						<!-- Placeholders for payment icons -->
-						<div class="h-6 w-10 rounded bg-slate-800"></div>
-						<div class="h-6 w-10 rounded bg-slate-800"></div>
-						<div class="h-6 w-10 rounded bg-slate-800"></div>
+			<div class="grid grid-cols-1 gap-16 md:grid-cols-4">
+				<div class="col-span-1 md:col-span-1">
+					<div class="mb-6 text-3xl font-black tracking-tighter text-white uppercase italic">
+						KONING<span class="text-[#fbbf24]">BET</span>
 					</div>
-					<p class="mt-4 text-xs text-slate-500">18+ | Play Responsibly</p>
+					<p
+						class="text-[10px] leading-relaxed font-black tracking-widest text-slate-600 uppercase"
+					>
+						DIT IS GEEN ECHT CASINO. WE OEFENEN HIER GEWOON VOOR DE LEUK. GOKKEN MET NEP GELD, MAAR
+						DE VERSLAVING IS ECHT. HATSA.
+					</p>
+				</div>
+				<div>
+					<h3 class="mb-8 text-[10px] font-black tracking-[0.5em] text-white uppercase">SPELLEN</h3>
+					<ul class="space-y-4 text-[10px] font-black tracking-widest text-slate-500 uppercase">
+						<li>
+							<a href="/games" class="transition-colors hover:text-purple-400">SLOTS VAN DE DOOD</a>
+						</li>
+						<li>
+							<a href="/games" class="transition-colors hover:text-purple-400">FERDIN'S GEHEIMEN</a>
+						</li>
+						<li>
+							<a href="/games" class="transition-colors hover:text-purple-400">CASH OVERLOAD</a>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="mb-8 text-[10px] font-black tracking-[0.5em] text-white uppercase">
+						GEEN HULP
+					</h3>
+					<ul class="space-y-4 text-[10px] font-black tracking-widest text-slate-500 uppercase">
+						<li>
+							<a href="/" class="transition-colors hover:text-red-500">JE STAAT ER ALLEEN VOOR</a>
+						</li>
+						<li><a href="/" class="transition-colors hover:text-red-500">GEEN GELD TERUG FR</a></li>
+						<li><a href="/" class="transition-colors hover:text-red-500">KONING'S WIL</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="mb-8 text-[10px] font-black tracking-[0.5em] text-white uppercase">SOCIALS</h3>
+					<div class="flex gap-4">
+						{#each ['𝕏', 'IG', 'TT', 'YT'] as social}
+							<div
+								class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl border border-purple-500/20 bg-slate-900 text-sm font-black text-purple-400 transition-all hover:bg-purple-600 hover:text-white"
+							>
+								{social}
+							</div>
+						{/each}
+					</div>
 				</div>
 			</div>
-			<div class="border-t border-white/5 pt-8 text-center text-sm text-slate-600">
-				&copy; 2026 FirdaBet. All rights reserved.
+			<div
+				class="mt-20 border-t border-slate-900 pt-10 text-center text-[10px] font-black tracking-[0.5em] text-slate-800 uppercase"
+			>
+				&copy; 2026 KONING FERDIN ENTERTAINMENT. AL JE VIRTUALE GELD IS VAN MIJ.
 			</div>
 		</div>
 	</footer>
