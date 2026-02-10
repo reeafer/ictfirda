@@ -91,10 +91,13 @@
 </script>
 
 <div class="relative min-h-screen overflow-hidden bg-black px-4 py-12">
-	<!-- Animated background (Subtler) -->
-	<div class="absolute inset-0 z-0 opacity-20">
+	<!-- Animated background -->
+	<div class="absolute inset-0 z-0 opacity-40">
 		<div
-			class="absolute top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/10 blur-[150px]"
+			class="absolute top-1/2 left-1/2 h-[1000px] w-[1000px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/20 blur-[150px]"
+		></div>
+		<div
+			class="absolute inset-0 bg-gradient-to-bl from-red-600/20 via-transparent to-yellow-500/20"
 		></div>
 	</div>
 
@@ -103,18 +106,18 @@
 		<div class="mb-12 flex items-center justify-between">
 			<a
 				href="/games"
-				class="flex items-center gap-2 text-xs font-black tracking-[0.3em] text-slate-500 uppercase transition-colors hover:text-[#fbbf24]"
+				class="flex items-center gap-2 text-2xl font-black tracking-[0.3em] text-white uppercase transition-colors hover:text-[#fbbf24]"
 			>
-				<span>←</span> TERUG NAAR OVERZICHT
+				<span>←</span> ANDER GOKKIE DOEN
 			</a>
 			{#if user}
 				<div
-					class="rounded-3xl border border-purple-500/20 bg-slate-900/50 p-4 px-8 shadow-xl backdrop-blur-xl"
+					class="rounded-3xl border-4 border-yellow-500 bg-red-600 p-6 px-16 shadow-[0_0_50px_rgba(239,68,68,0.5)] backdrop-blur-xl"
 				>
-					<div class="mb-1 text-[9px] font-black tracking-[0.5em] text-purple-400 uppercase">
-						JE VIRTUELE SALDO
+					<div class="mb-1 text-xs font-black tracking-[0.5em] text-white uppercase">
+						JE VIRTUELE ZAKEN:
 					</div>
-					<div class="text-3xl font-black text-[#fbbf24] italic">
+					<div class="text-6xl font-black text-yellow-300 italic">
 						€{user.balance?.toFixed(0)}
 					</div>
 				</div>
@@ -122,78 +125,77 @@
 		</div>
 
 		<!-- Main Game Area -->
-		<div class="overflow-hidden rounded-[4rem] border border-slate-900 bg-black shadow-2xl">
+		<div
+			class="overflow-hidden rounded-[4rem] border-8 border-yellow-500 bg-black shadow-[0_0_100px_rgba(251,191,36,0.3)]"
+		>
 			<!-- Game Header -->
 			<div
-				class="relative overflow-hidden border-b border-slate-900 bg-gradient-to-r from-purple-950 via-slate-900 to-purple-950 p-12 text-center text-white"
+				class="relative overflow-hidden border-b-8 border-yellow-500 bg-gradient-to-r from-red-600 via-purple-700 to-red-600 p-12 text-center text-white"
 			>
 				<div
-					class="absolute top-4 right-8 animate-bounce text-[9px] font-black tracking-[0.5em] text-[#fbbf24] uppercase"
+					class="absolute top-4 right-8 text-xl font-black tracking-[0.5em] text-white uppercase"
 				>
-					KONING FERDIN APPROVED
+					KONING FERDIN APPROVED 👑
 				</div>
-				<h1 class="text-6xl font-black tracking-tighter uppercase italic md:text-8xl">
+				<h1 class="text-7xl font-black tracking-tighter uppercase italic md:text-9xl">
 					SLOTS VAN DE <span class="text-[#fbbf24]">DOOD</span>
 				</h1>
-				<p class="mt-4 text-xs font-black tracking-[0.5em] text-white/50 uppercase">
-					OEFEN HIER JE GOKKUNSTEN MET NEP GELD!
+				<p class="mt-4 text-2xl font-black tracking-[0.5em] text-white uppercase">
+					OEFEN HIER JE GOKKUNSTEN MET NEP GELD! HATSA!
 				</p>
 			</div>
 
 			<div class="p-16">
 				<!-- Reels Display -->
-				<div class="mb-16 flex justify-center gap-4 sm:gap-10">
+				<div class="mb-16 flex justify-center gap-4 sm:gap-14">
 					{#each reels as reel}
 						<div
-							class="flex h-56 w-full max-w-[180px] items-center justify-center rounded-[3rem] border-4 border-slate-900 bg-[#050505] text-8xl shadow-2xl transition-all duration-75"
-							class:scale-95={spinning}
-							class:animate-shake={result?.result === 'WIN'}
+							class="flex h-72 w-full max-w-[220px] items-center justify-center rounded-[3rem] border-8 border-yellow-500 bg-[#050505] text-9xl shadow-[0_0_50px_rgba(251,191,36,0.2)] transition-all duration-75"
+							class:animate-brainrot={spinning}
+							class:animate-shake-extreme={result?.result === 'WIN'}
 						>
-							<span>{symbols[reel]}</span>
+							<span class="animate-float-crazy">{symbols[reel]}</span>
 						</div>
 					{/each}
 				</div>
 
 				<!-- Status Message -->
-				<div class="mb-14 h-24 text-center">
+				<div class="mb-14 h-32 text-center">
 					{#if message}
 						<div
-							class="animate-shake-slow text-4xl font-black tracking-tighter text-white uppercase italic md:text-5xl"
+							class="animate-shake-extreme text-6xl font-black tracking-tighter text-white uppercase italic md:text-8xl"
 						>
-							<span
-								class="bg-gradient-to-r from-red-500 via-yellow-400 to-purple-600 bg-clip-text text-transparent"
-								>{message}</span
-							>
+							<span class="animate-gok-text">{message}</span>
 						</div>
 					{:else}
 						<div
-							class="animate-pulse text-[10px] font-black tracking-[0.6em] text-slate-700 uppercase"
+							class="animate-dopamine text-2xl font-black tracking-[0.6em] text-[#fbbf24] uppercase"
 						>
-							GOOI ER WAT GELD TEGENAAN...
+							GOOI ER WAT GELD TEGENAAN JONGEN... 💸
 						</div>
 					{/if}
 				</div>
 
 				<!-- Bet Controls -->
 				<div class="mb-12 grid grid-cols-1 gap-12 md:grid-cols-2">
-					<div class="rounded-[3rem] border border-purple-900/30 bg-[#050505] p-8">
+					<div class="animate-tilt rounded-[3rem] border-4 border-yellow-500 bg-[#050505] p-12">
 						<label
 							for="slots-bet"
-							class="mb-4 block text-center text-[10px] font-black tracking-[0.5em] text-slate-600 uppercase"
+							class="mb-4 block text-center text-xl font-black tracking-[0.5em] text-[#fbbf24] uppercase"
 							>INZET (VIRTUEL)</label
 						>
-						<div class="flex items-center justify-center gap-8">
+						<div class="flex items-center justify-center gap-14">
 							<button
 								onclick={() => (betAmount = Math.max(1, betAmount - 5))}
-								class="h-14 w-14 rounded-2xl border-2 border-slate-900 text-2xl font-black text-white transition-all hover:bg-red-600/20 active:scale-90"
+								class="h-20 w-20 rounded-2xl border-4 border-yellow-500 text-4xl font-black text-white transition-all hover:bg-yellow-500 hover:text-black active:scale-95"
 								disabled={spinning}>-</button
 							>
-							<div class="text-5xl font-black tracking-tighter text-white italic">
+							<div class="animate-gok-text text-7xl font-black tracking-tighter text-white italic">
 								€{betAmount}
 							</div>
 							<button
 								onclick={() => (betAmount = Math.min(game?.max_bet || 1000, betAmount + 5))}
-								class="h-14 w-14 rounded-2xl border-2 border-slate-900 text-2xl font-black text-white transition-all hover:bg-emerald-600/20 active:scale-90"
+								class="h-20 w-20 rounded-2xl border-4 border-yellow-500 text-4xl font-black text-white transition-all hover:bg-yellow-500 hover:text-black active:scale-95"
 								disabled={spinning}>+</button
 							>
 						</div>
@@ -202,9 +204,10 @@
 					<button
 						onclick={spin}
 						disabled={spinning || !user || betAmount > user?.balance}
-						class="rounded-[3rem] bg-[#fbbf24] text-2xl font-black text-slate-950 uppercase shadow-lg transition-all hover:scale-105 active:scale-95 disabled:grayscale"
+						class="animate-dopamine rounded-[3rem] border-8 border-white bg-[#fbbf24] text-5xl font-black text-slate-950 uppercase shadow-[0_0_100px_rgba(251,191,36,0.5)] transition-all hover:scale-110 active:scale-95 disabled:grayscale"
 					>
-						{spinning ? 'DRAAIEN...' : 'WAAG EEN GOKJE 🚀'}
+						<span class="block animate-bounce">{spinning ? 'DRAAIEN...' : 'WAAG EEN GOKJE 🚀'}</span
+						>
 					</button>
 				</div>
 			</div>

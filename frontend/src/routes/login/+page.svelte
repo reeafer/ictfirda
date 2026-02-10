@@ -36,48 +36,51 @@
 </script>
 
 <div
-	class="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-4 py-20"
+	class="animate-flash-insane relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-4 py-20"
 >
-	<!-- Background (Subtler) -->
+	<!-- Background Effects -->
 	<div class="absolute inset-0 z-0">
 		<div
-			class="h-full w-full bg-[radial-gradient(circle_at_center,_#7e22ce_0%,_#000_80%)] opacity-20"
+			class="h-full w-full animate-pulse bg-[radial-gradient(circle_at_center,_#7e22ce_0%,_#000_80%)] opacity-40"
+		></div>
+		<div
+			class="animate-shake-extreme absolute inset-0 bg-gradient-to-tr from-red-600/20 via-transparent to-yellow-500/20"
 		></div>
 	</div>
 
 	<div class="relative z-10 w-full max-w-lg">
 		<div class="mb-12 text-center">
 			<div
-				class="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-tr from-purple-600 to-slate-900 text-4xl font-black text-white shadow-2xl"
+				class="mx-auto mb-8 flex h-24 w-24 animate-bounce items-center justify-center rounded-3xl bg-gradient-to-tr from-purple-600 to-yellow-500 text-6xl font-black text-white shadow-2xl"
 			>
 				👑
 			</div>
 			<h2
-				class="animate-shake-slow text-6xl font-black tracking-tighter text-white uppercase italic"
+				class="animate-shake-extreme text-7xl font-black tracking-tighter text-white uppercase italic md:text-8xl"
 			>
-				IN<span class="text-[#fbbf24]">LOGGEN</span>
+				<span class="animate-gok-text">IN</span><span class="text-[#fbbf24]">LOGGEN</span>
 			</h2>
-			<p class="mt-4 text-[10px] font-black tracking-[0.5em] text-slate-700 uppercase italic">
-				BIJ DE KONING. GEWOON DOEN. HATSA!
+			<p class="animate-dopamine mt-4 text-2xl font-black text-slate-400 uppercase italic">
+				BIJ DE KONING. GEWOON DOEN. HATSA! 🔥
 			</p>
 		</div>
 
 		<div
-			class="relative overflow-hidden rounded-[4rem] border border-slate-900 bg-[#050505] p-12 shadow-2xl"
+			class="animate-sway relative overflow-hidden rounded-[4rem] border-8 border-yellow-500 bg-[#050505] p-12 shadow-[0_0_100px_rgba(251,191,36,0.3)]"
 		>
-			<form class="relative z-10 space-y-8" onsubmit={handleLogin}>
+			<form class="relative z-10 space-y-10" onsubmit={handleLogin}>
 				<div>
 					<label
 						for="username"
-						class="mb-4 block text-[9px] font-black tracking-[0.6em] text-slate-500 uppercase"
-						>GEBRUIKERSNAAM</label
+						class="mb-4 block text-xl font-black tracking-widest text-[#fbbf24] uppercase"
+						>WIE BEN JE?</label
 					>
 					<input
 						id="username"
 						type="text"
 						required
 						bind:value={username}
-						class="block w-full rounded-2xl border-2 border-slate-900 bg-slate-950 px-6 py-5 text-lg font-black text-white transition-all focus:border-[#fbbf24] focus:outline-none"
+						class="block w-full animate-pulse rounded-2xl border-4 border-slate-900 bg-slate-950 px-8 py-6 text-2xl font-black text-white transition-all focus:border-[#fbbf24] focus:outline-none"
 						placeholder="gok_meester123"
 					/>
 				</div>
@@ -85,60 +88,40 @@
 				<div>
 					<label
 						for="password"
-						class="mb-4 block text-[9px] font-black tracking-[0.6em] text-slate-500 uppercase"
-						>WACHTWOORD</label
+						class="mb-4 block text-xl font-black tracking-widest text-[#fbbf24] uppercase"
+						>GEHEIM WOORD?</label
 					>
 					<input
 						id="password"
 						type="password"
 						required
 						bind:value={password}
-						class="block w-full rounded-2xl border-2 border-slate-900 bg-slate-950 px-6 py-5 text-lg font-black text-white transition-all focus:border-purple-600 focus:outline-none"
+						class="block w-full animate-pulse rounded-2xl border-4 border-slate-900 bg-slate-950 px-8 py-6 text-2xl font-black text-white transition-all focus:border-purple-600 focus:outline-none"
 						placeholder="••••••••"
 					/>
-				</div>
-
-				<div class="flex items-center justify-between">
-					<div class="flex items-center">
-						<input
-							id="remember-me"
-							type="checkbox"
-							class="h-5 w-5 rounded border-2 border-slate-900 bg-slate-950 text-[#fbbf24] focus:ring-[#fbbf24]"
-						/>
-						<label
-							for="remember-me"
-							class="ml-3 block text-[9px] font-black tracking-widest text-slate-700 uppercase"
-						>
-							ONTHOUD MIJ
-						</label>
-					</div>
-
-					<div class="text-[9px] font-black tracking-[0.4em] uppercase">
-						<a href="/forgot-password" class="text-slate-800 transition-all hover:text-[#fbbf24]">
-							WACHTWOORD KWIJT?
-						</a>
-					</div>
 				</div>
 
 				<button
 					type="submit"
 					disabled={loading}
-					class="group relative w-full overflow-hidden rounded-3xl bg-gradient-to-r from-purple-700 to-slate-900 py-6 text-xl font-black text-white uppercase shadow-lg transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50"
+					class="animate-dopamine group relative w-full overflow-hidden rounded-3xl bg-gradient-to-r from-red-600 via-purple-700 to-yellow-500 py-8 text-3xl font-black text-white uppercase shadow-2xl transition-all hover:scale-110 active:scale-95 disabled:opacity-50"
 				>
 					<span class="relative z-10">
 						{#if loading}
-							EVEN WACHTEN...
+							GEVALLETJE WACHTEN...
 						{:else}
-							GAAN MET DIE BANAAN 🚀
+							GAAN MET DIE BANAAN 🚀 HATSA!
 						{/if}
 					</span>
 				</button>
 			</form>
 
-			<div class="relative z-10 mt-12 border-t border-slate-900 pt-10 text-center">
-				<p class="text-[9px] font-black tracking-[0.6em] text-slate-700 uppercase">
+			<div class="relative z-10 mt-12 border-t-4 border-slate-900 pt-10 text-center">
+				<p class="text-xl font-black text-slate-500 uppercase">
 					NOG GEEN ACCOUNT?
-					<a href="/signup" class="ml-2 text-[#fbbf24] underline transition-all">REGISTREER NU</a>
+					<a href="/signup" class="animate-gok-text ml-2 text-[#fbbf24] underline transition-all"
+						>REGISTREER NU JONGEN</a
+					>
 				</p>
 			</div>
 		</div>

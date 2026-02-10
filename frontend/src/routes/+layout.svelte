@@ -3,6 +3,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import { user, logout } from '$lib/stores';
 	import { page } from '$app/state';
+	import Jackpot from '$lib/components/Jackpot.svelte';
 
 	let { children } = $props();
 
@@ -43,26 +44,27 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<title>KONINGBET - Oefenen met Gokken</title>
+	<title>mijnfirda goksite - DE BESTE GOK SITE</title>
 	<meta
 		name="description"
-		content="Oefen je gokverslaving met Koning Ferdin. Geen echt geld, wel de volledige ervaring. Hatsa!"
+		content="Oefen je gokverslaving bij mijnfirda goksite. Geen echt geld, wel de volledige ervaring. Hatsa!"
 	/>
 </svelte:head>
 
 <div class="relative flex min-h-screen flex-col overflow-hidden bg-[#050811] text-slate-100">
+	<Jackpot />
 	<!-- Sensory Overload Overlays (Subtler) -->
-	<div class="pointer-events-none fixed inset-0 z-0 overflow-hidden opacity-10 select-none">
+	<div class="pointer-events-none fixed inset-0 z-0 overflow-hidden opacity-30 select-none">
 		<div
-			class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#7e22ce_0%,_transparent_60%)]"
+			class="animate-flash-insane absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#7e22ce_0%,_transparent_60%)]"
 		></div>
-		{#each Array(20) as _, i}
+		{#each Array(50) as _, i}
 			<div
-				class="animate-chaotic absolute text-4xl"
+				class="animate-float-crazy absolute text-6xl"
 				style="top: {Math.random() * 100}%; left: {Math.random() * 100}%; 
-                       animation-delay: {Math.random() * 10}s; 
-                       animation-duration: {10 + Math.random() * 5}s;
-                       opacity: {0.05 + Math.random() * 0.2}"
+                       animation-delay: {Math.random() * 5}s; 
+                       animation-duration: {5 + Math.random() * 5}s;
+                       opacity: {0.1 + Math.random() * 0.4}"
 			>
 				{brainrotEmojis[Math.floor(Math.random() * brainrotEmojis.length)]}
 			</div>
@@ -71,9 +73,9 @@
 
 	<!-- Top Bar -->
 	<div
-		class="animate-shake-slow relative z-50 bg-gradient-to-r from-purple-800 via-yellow-600 to-purple-800 py-2 text-center text-[11px] font-black tracking-[0.4em] text-black uppercase"
+		class="relative z-50 bg-gradient-to-r from-red-600 via-yellow-400 to-purple-600 py-4 text-center text-xl font-black tracking-[0.4em] text-white uppercase italic"
 	>
-		🔥 KONING FERDIN KIJKT MEE - OEFEN HIER JE GOKKUNSTEN - HATSA 🔥
+		🔥 MIJNFIRDA GOKSITE - GEEN SCHOOL, ALLEEN GECASH - HATSA HATSA HATSA 🔥
 	</div>
 
 	<!-- Navbar -->
@@ -86,10 +88,10 @@
 						<div
 							class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-tr from-purple-600 to-yellow-500 font-black text-white shadow-lg"
 						>
-							KF
+							MG
 						</div>
 						<span class="text-2xl font-black tracking-tighter text-white uppercase italic">
-							KONING<span class="text-[#fbbf24]">BET</span>
+							MIJNFIRDA<span class="text-[#fbbf24]">GOKSITE</span>
 						</span>
 					</a>
 				</div>
@@ -117,6 +119,18 @@
 							class="text-xs font-black tracking-widest text-slate-400 uppercase transition-colors hover:text-white"
 							>VIP CLUB 👑</a
 						>
+					</div>
+				</div>
+
+				<!-- Live Gambled -->
+				<div
+					class="hidden flex-col items-center justify-center rounded-full border-4 border-yellow-500 bg-red-600 px-6 py-2 shadow-[0_0_30px_rgba(239,68,68,0.5)] md:flex"
+				>
+					<div class="text-[10px] font-black text-white uppercase italic">
+						TOTAAL VERGOKT VANDAAG:
+					</div>
+					<div class="text-2xl font-black text-yellow-300">
+						€{(12456789 + Math.random() * 100000).toLocaleString()}
 					</div>
 				</div>
 
@@ -196,7 +210,7 @@
 			<div class="grid grid-cols-1 gap-16 md:grid-cols-4">
 				<div class="col-span-1 md:col-span-1">
 					<div class="mb-6 text-3xl font-black tracking-tighter text-white uppercase italic">
-						KONING<span class="text-[#fbbf24]">BET</span>
+						MIJNFIRDA<span class="text-[#fbbf24]">GOKSITE</span>
 					</div>
 					<p
 						class="text-[10px] leading-relaxed font-black tracking-widest text-slate-600 uppercase"

@@ -27,50 +27,38 @@
 	};
 </script>
 
-<div class="relative min-h-screen overflow-hidden bg-black pb-32">
+<div class="animate-flash-insane relative min-h-screen overflow-hidden bg-black pb-32">
 	<!-- Moving Background Line (Fake Graph) -->
-	<div class="pointer-events-none absolute inset-0 opacity-10">
-		<svg width="100%" height="100%">
+	<div class="pointer-events-none absolute inset-0 opacity-20">
+		<svg width="100%" height="100%" class="animate-sway">
 			<path
 				d="M0,500 L200,450 L400,480 L600,300 L800,400 L1000,100 L1200,250 L1400,50 L1600,200 L1800,150 L2000,300"
 				fill="none"
 				stroke="#fbbf24"
-				stroke-width="10"
+				stroke-width="20"
 				stroke-linecap="round"
+				class="animate-pulse"
 			/>
 		</svg>
 	</div>
 
-	<!-- Floating Particles (Subtler) -->
-	<div class="pointer-events-none absolute inset-0">
-		{#each Array(10) as _}
-			<div
-				class="animate-chaotic absolute text-4xl opacity-5"
-				style="top: {Math.random() * 100}%; left: {Math.random() *
-					100}%; animation-delay: {Math.random() * 10}s"
-			>
-				{['💸', '🎰', '💀', '🔥'][Math.floor(Math.random() * 4)]}
-			</div>
-		{/each}
-	</div>
-
 	<!-- Header Section -->
 	<div
-		class="relative overflow-hidden border-b border-purple-900/30 bg-gradient-to-br from-purple-950 via-black to-slate-950 pt-32 pb-48 text-white"
+		class="animate-brainrot relative overflow-hidden border-b-8 border-yellow-500 bg-gradient-to-br from-purple-900 via-red-900 to-black pt-32 pb-48 text-white"
 	>
 		<div class="relative z-10 container mx-auto px-4 text-center">
 			<div
-				class="mb-8 inline-block rounded-2xl border border-yellow-500/20 bg-yellow-500/10 px-6 py-2 text-[10px] font-black tracking-[0.5em] text-[#fbbf24] uppercase"
+				class="mb-8 inline-block animate-bounce rounded-2xl border-4 border-yellow-500 bg-yellow-500/10 px-6 py-2 text-2xl font-black tracking-[0.5em] text-[#fbbf24] uppercase"
 			>
-				KONING FERDIN'S GOKHAL
+				KONING FERDIN'S GOKHAL 🔥🔥🔥
 			</div>
 			<h1
-				class="animate-shake-slow mb-6 text-7xl font-black tracking-tighter uppercase italic md:text-8xl"
+				class="animate-shake-extreme mb-6 text-7xl font-black tracking-tighter uppercase italic md:text-9xl"
 			>
-				KIES JE <span class="text-[#fbbf24]">GELUK</span>
+				<span class="animate-gok-text">KIES JE</span> <span class="text-[#fbbf24]">GELUK</span>
 			</h1>
 			<p
-				class="mx-auto max-w-2xl text-xl font-black tracking-tight text-slate-500 uppercase italic"
+				class="animate-dopamine mx-auto max-w-2xl text-3xl font-black tracking-tight text-white uppercase italic"
 			>
 				GEEN ECHT GELD, GEEN ECHTE ZORGEN. GEWOON LEKKER GOKKEN BIJ DE KONING. HET IS TIJD VOOR EEN
 				WINNERTJE. HATSA!
@@ -82,14 +70,14 @@
 		<!-- Filter Bar -->
 		<div class="mb-16 flex flex-wrap items-center justify-center gap-8">
 			<div
-				class="flex items-center gap-4 rounded-[2rem] border border-slate-900 bg-black p-2 shadow-2xl"
+				class="animate-sway flex items-center gap-4 rounded-[2rem] border-4 border-yellow-500 bg-black p-4 shadow-2xl"
 			>
 				{#each categories as cat}
 					<button
 						onclick={() => (category = cat)}
-						class="rounded-2xl px-10 py-3 text-xs font-black uppercase transition-all {category ===
+						class="rounded-2xl px-10 py-5 text-xl font-black uppercase transition-all {category ===
 						cat
-							? 'bg-purple-600 text-white shadow-lg'
+							? 'bg-gradient-to-r from-red-600 to-yellow-500 text-white shadow-[0_0_30px_rgba(239,68,68,0.5)]'
 							: 'text-slate-600 hover:text-white'}"
 					>
 						{cat}
@@ -99,43 +87,45 @@
 		</div>
 
 		<!-- Games Grid -->
-		<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+		<div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 			{#each games.filter(filterGames) as game}
 				<a
 					href="/games/{game.type}"
-					class="group relative overflow-hidden rounded-[3rem] border border-slate-900 bg-[#0a0a0a] p-2 transition-all hover:-translate-y-2 hover:border-purple-600/50"
+					class="animate-tilt group relative overflow-hidden rounded-[3rem] border-4 border-slate-900 bg-[#0a0a0a] p-4 shadow-2xl transition-all hover:scale-110 hover:border-yellow-500"
 				>
 					<div
-						class="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[2.5rem] bg-black"
+						class="animate-dopamine relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[2.5rem] bg-black"
 					>
 						<div
-							class="absolute inset-0 bg-gradient-to-br from-purple-900/0 to-yellow-900/0 opacity-0 transition-all group-hover:from-purple-900/20 group-hover:to-yellow-900/20 group-hover:opacity-100"
+							class="absolute inset-0 bg-gradient-to-br from-red-600 to-purple-600 opacity-20 transition-all group-hover:opacity-60"
 						></div>
 						<div
-							class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"
+							class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"
 						></div>
 
-						<span
-							class="relative z-10 text-[8rem] transition-all duration-300 group-hover:scale-110"
-						>
+						<span class="animate-float-crazy relative z-10 text-[10rem]">
 							{gameIcons[game.type] || '🎲'}
 						</span>
 					</div>
 					<div class="p-8">
 						<div
-							class="mb-3 text-[10px] font-black tracking-[0.4em] text-[#fbbf24] uppercase italic transition-all"
+							class="animate-gok-text mb-3 text-sm font-black tracking-[0.4em] text-[#fbbf24] uppercase italic transition-all"
 						>
-							{game.type}
+							{game.type} 🔥
 						</div>
-						<h3 class="mb-6 text-2xl font-black tracking-tight text-white uppercase italic">
+						<h3
+							class="animate-shake-slow mb-6 text-4xl font-black tracking-tight text-white uppercase italic"
+						>
 							{game.name}
 						</h3>
-						<div class="flex items-center justify-between border-t border-slate-900/50 pt-6">
-							<div class="text-[9px] font-black tracking-widest text-slate-700 uppercase">
-								GOKKUNSTEN: LAAG
+						<div class="flex items-center justify-between border-t-4 border-slate-900/50 pt-6">
+							<div
+								class="animate-pulse text-xs font-black tracking-widest text-[#fbbf24] uppercase"
+							>
+								GOKKUNSTEN: MAX
 							</div>
 							<div
-								class="rounded-xl border border-purple-900/50 bg-purple-900/10 px-5 py-2 text-[10px] font-black text-purple-400 uppercase transition-all group-hover:bg-purple-600 group-hover:text-white"
+								class="animate-brainrot rounded-xl bg-purple-600 px-6 py-3 text-sm font-black text-white uppercase transition-all group-hover:bg-yellow-500 group-hover:text-black"
 							>
 								SPEEL NU 🚀
 							</div>

@@ -11,6 +11,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 
+import { ChatGateway } from './chat.gateway';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -37,6 +39,6 @@ import { JwtStrategy } from './jwt.strategy';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, JwtStrategy],
+  providers: [AppService, JwtStrategy, ChatGateway],
 })
 export class AppModule {}

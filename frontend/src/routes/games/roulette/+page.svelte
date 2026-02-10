@@ -109,10 +109,13 @@
 </script>
 
 <div class="relative min-h-screen overflow-hidden bg-black px-4 py-12">
-	<!-- Background grid (Subtler) -->
-	<div class="absolute inset-0 z-0 opacity-10">
+	<!-- Background grid -->
+	<div class="absolute inset-0 z-0 opacity-20">
 		<div
-			class="h-full w-full bg-[radial-gradient(circle_at_center,_#7e22ce_1px,_transparent_1px)] bg-[size:40px_40px]"
+			class="h-full w-full bg-[radial-gradient(circle_at_center,_#7e22ce_2px,_transparent_2px)] bg-[size:60px_60px]"
+		></div>
+		<div
+			class="absolute inset-0 bg-gradient-to-tr from-red-600/20 via-transparent to-yellow-500/20"
 		></div>
 	</div>
 
@@ -121,18 +124,18 @@
 		<div class="mb-12 flex items-center justify-between">
 			<a
 				href="/games"
-				class="flex items-center gap-2 text-xs font-black tracking-[0.4em] text-slate-500 uppercase transition-colors hover:text-[#fbbf24]"
+				class="flex items-center gap-2 text-2xl font-black tracking-[0.4em] text-white uppercase transition-colors hover:text-[#fbbf24]"
 			>
-				<span>←</span> TERUG NAAR DE GOKHAL
+				<span>←</span> ANDERE CHAOS ZOEKEN
 			</a>
 			{#if user}
 				<div
-					class="rounded-3xl border border-purple-500/20 bg-slate-900/50 p-4 px-10 shadow-xl backdrop-blur-3xl"
+					class="rounded-3xl border-4 border-yellow-500 bg-red-600 p-6 px-16 shadow-[0_0:50px_rgba(239,68,68,0.5)] backdrop-blur-3xl"
 				>
-					<div class="mb-1 text-[9px] font-black tracking-[0.6em] text-purple-400 uppercase">
-						OEFEN BUDGET
+					<div class="mb-1 text-xs font-black tracking-[0.6em] text-white uppercase">
+						JE ZAKKEN ZIJN GEVULD:
 					</div>
-					<div class="text-4xl font-black text-[#fbbf24] italic">
+					<div class="text-6xl font-black text-yellow-300 italic">
 						€{user.balance?.toFixed(0)}
 					</div>
 				</div>
@@ -143,36 +146,34 @@
 			<!-- Wheel Section -->
 			<div class="space-y-10 lg:col-span-2">
 				<div
-					class="relative overflow-hidden rounded-[5rem] border border-slate-900 bg-[#050505] shadow-2xl"
+					class="relative overflow-hidden rounded-[5rem] border-8 border-yellow-500 bg-[#050505] shadow-[0_0:100px_rgba(251,191,36,0.3)]"
 				>
 					<div
-						class="overflow-hidden border-b border-slate-900 bg-gradient-to-r from-purple-950 via-slate-900 to-purple-950 p-12 text-center text-white"
+						class="overflow-hidden border-b-8 border-yellow-500 bg-gradient-to-r from-red-600 via-purple-700 to-red-600 p-12 text-center text-white"
 					>
 						<div
-							class="absolute top-4 left-8 animate-bounce text-[9px] font-black tracking-[0.6em] text-[#fbbf24] uppercase"
+							class="absolute top-4 left-8 text-xl font-black tracking-[0.6em] text-white uppercase"
 						>
-							OEFENEN FR FR
+							OEFENEN FR FR 👑
 						</div>
-						<h1 class="text-5xl font-black tracking-tighter uppercase italic md:text-6xl">
+						<h1 class="text-5xl font-black tracking-tighter uppercase italic md:text-7xl">
 							RAD VAN <span class="text-[#fbbf24]">GELUK</span>
 						</h1>
 					</div>
 
 					<div class="p-16 text-center">
-						<div class="group relative mx-auto mb-14 h-80 w-80">
+						<div class="group relative mx-auto mb-14 h-96 w-96">
 							<!-- Outer glow -->
-							<div class="absolute inset-0 rounded-full bg-purple-600/10 blur-3xl"></div>
+							<div class="animate-zoom absolute inset-0 rounded-full bg-red-600/20 blur-3xl"></div>
 							<div
-								class="absolute inset-0 overflow-hidden rounded-full border-[15px] border-slate-900 bg-black shadow-2xl"
+								class="absolute inset-0 overflow-hidden rounded-full border-[20px] border-yellow-500 bg-black shadow-2xl"
 								style="transform: rotate({wheelRotation}deg);"
 							>
 								<!-- Hub cap -->
-								<div
-									class="absolute top-0 left-1/2 z-20 h-10 w-2 -translate-x-1/2 bg-[#fbbf24]"
-								></div>
+								<div class="absolute top-0 left-1/2 z-20 h-16 w-4 -translate-x-1/2 bg-white"></div>
 								{#each Array(24) as _, i}
 									<div
-										class="absolute top-1/2 left-1/2 h-36 w-1 origin-top -translate-x-1/2 bg-slate-800/50"
+										class="absolute top-1/2 left-1/2 h-44 w-2 origin-top -translate-x-1/2 bg-yellow-500/30"
 										style="transform: rotate({i * 15}deg)"
 									></div>
 								{/each}
@@ -182,55 +183,54 @@
 							>
 								{#if spinResult !== null}
 									<div
-										class="animate-shake-slow text-8xl font-black text-white italic drop-shadow-2xl"
+										class="animate-shake-extreme text-9xl font-black text-white italic drop-shadow-[0_0_30px_rgba(255,255,255,0.8)]"
 									>
 										{spinResult}
 									</div>
 								{:else}
-									<div class="animate-spin text-7xl opacity-20">🎡</div>
+									<div class="animate-spin text-9xl">🎡</div>
 								{/if}
 							</div>
 						</div>
 
-						<div class="mb-14 flex h-24 items-center justify-center">
+						<div class="mb-14 flex h-32 items-center justify-center">
 							{#if message}
 								<div
-									class="animate-shake-slow text-2xl font-black tracking-tighter text-white uppercase italic md:text-3xl"
+									class="animate-shake-extreme rounded-[4rem] border-8 border-white bg-red-600 px-12 py-8 text-4xl font-black tracking-tighter text-white uppercase italic shadow-2xl"
 								>
-									<span
-										class="bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent"
-										>{message}</span
-									>
+									<span class="animate-gok-text">{message}</span>
 								</div>
 							{:else}
 								<div
-									class="animate-pulse text-[10px] font-black tracking-[0.8em] text-slate-700 uppercase"
+									class="animate-pulse text-2xl font-black tracking-[0.8em] text-[#fbbf24] uppercase"
 								>
-									ZET JE GELD IN...
+									ZET JE GELD IN JONGEN... 💸
 								</div>
 							{/if}
 						</div>
 
 						<!-- Bet Controls -->
 						<div class="space-y-8">
-							<div class="rounded-[3rem] border border-slate-900 bg-[#0a0a0a] p-8">
+							<div class="animate-tilt rounded-[3rem] border-4 border-yellow-500 bg-[#0a0a0a] p-10">
 								<label
 									for="roul-bet"
-									class="mb-4 block text-center text-[9px] font-black tracking-[0.5em] text-slate-700 uppercase"
-									>INZET (VIRTUEL)</label
+									class="mb-4 block text-center text-xl font-black tracking-[0.5em] text-[#fbbf24] uppercase"
+									>HOEVEEL GOOI JE WEG?</label
 								>
-								<div class="flex items-center justify-center gap-8">
+								<div class="flex items-center justify-center gap-10">
 									<button
 										onclick={() => (betAmount = Math.max(1, betAmount - 5))}
-										class="h-14 w-14 rounded-2xl border-2 border-slate-900 text-2xl font-black text-white transition-all hover:bg-slate-800 active:scale-90"
+										class="h-16 w-16 rounded-2xl border-4 border-yellow-500 text-3xl font-black text-white transition-all hover:bg-yellow-500 hover:text-black active:scale-95"
 										disabled={spinning}>-</button
 									>
-									<div class="text-5xl font-black tracking-tighter text-white italic">
+									<div
+										class="animate-gok-text text-6xl font-black tracking-tighter text-white italic"
+									>
 										€{betAmount}
 									</div>
 									<button
 										onclick={() => (betAmount = Math.min(game?.max_bet || 1000, betAmount + 5))}
-										class="h-14 w-14 rounded-2xl border-2 border-slate-900 text-2xl font-black text-white transition-all hover:bg-slate-800 active:scale-90"
+										class="h-16 w-16 rounded-2xl border-4 border-yellow-500 text-3xl font-black text-white transition-all hover:bg-yellow-500 hover:text-black active:scale-95"
 										disabled={spinning}>+</button
 									>
 								</div>
@@ -238,10 +238,10 @@
 
 							{#if selectedBet}
 								<div
-									class="rounded-3xl border border-purple-900/30 bg-[#0a0a0a] p-6 text-center shadow-xl"
+									class="animate-bounce rounded-3xl border-4 border-purple-600 bg-[#0a0a0a] p-8 text-center shadow-2xl"
 								>
-									<span class="text-xs font-black tracking-[0.5em] text-[#fbbf24] uppercase"
-										>GESELECTEERD: {selectedBet.label}</span
+									<span class="text-2xl font-black tracking-[0.5em] text-white uppercase"
+										>GESELECTEERD: {selectedBet.label} 🔥</span
 									>
 								</div>
 							{/if}
@@ -249,9 +249,9 @@
 							<button
 								onclick={spin}
 								disabled={spinning || !user || !selectedBet || betAmount > user?.balance}
-								class="w-full rounded-[3rem] bg-[#fbbf24] py-8 text-2xl font-black text-slate-950 uppercase shadow-lg transition-all hover:scale-[1.02] active:scale-95 disabled:grayscale"
+								class="animate-dopamine w-full rounded-[3rem] border-8 border-white bg-[#fbbf24] py-10 text-4xl font-black text-slate-950 uppercase shadow-[0_0:100px_rgba(251,191,36,0.5)] transition-all hover:scale-105 active:scale-95 disabled:grayscale"
 							>
-								{spinning ? 'DRAAIEN...' : 'WAAG EEN GOKJE 🚀'}
+								{spinning ? 'DRAAIEN...' : 'WAAG EEN GOKJE 🚀 HATSA!'}
 							</button>
 						</div>
 					</div>
@@ -261,54 +261,56 @@
 			<!-- Betting Board -->
 			<div class="space-y-12 lg:col-span-3">
 				<div
-					class="relative overflow-hidden rounded-[5rem] border border-slate-900 bg-[#050505] p-16 shadow-2xl"
+					class="animate-sway relative overflow-hidden rounded-[5rem] border-8 border-slate-900 bg-[#050505] p-16 shadow-2xl"
 				>
 					<h3
-						class="mb-10 text-center text-[10px] font-black tracking-[0.8em] text-slate-800 uppercase"
+						class="mb-10 text-center text-3xl font-black tracking-[0.8em] text-[#fbbf24] uppercase"
 					>
-						WAAR GA JE OP WEDDEN?
+						WAAR GAAN WE OP WEDDEN??
 					</h3>
 
 					<!-- Outside Bets -->
-					<div class="mb-16 grid grid-cols-2 gap-6 sm:grid-cols-4">
+					<div class="mb-16 grid grid-cols-2 gap-8 sm:grid-cols-4">
 						<button
 							onclick={() => selectBet('red', null, 'ROOD')}
-							class="rounded-[2.5rem] border-4 py-8 text-sm font-black uppercase transition-all {selectedBet?.type ===
+							class="animate-pulse rounded-[2.5rem] border-8 py-10 text-2xl font-black uppercase transition-all {selectedBet?.type ===
 							'red'
-								? 'border-[#fbbf24] bg-red-600 text-white shadow-xl'
-								: 'border-red-900/20 text-red-900 hover:border-red-600'}">ROOD</button
+								? 'border-white bg-red-600 text-white shadow-2xl'
+								: 'border-red-900/40 bg-black text-red-900 hover:border-red-600'}">ROOD</button
 						>
 						<button
 							onclick={() => selectBet('black', null, 'ZWART')}
-							class="rounded-[2.5rem] border-4 py-8 text-sm font-black uppercase transition-all {selectedBet?.type ===
+							class="animate-pulse rounded-[2.5rem] border-8 py-10 text-2xl font-black uppercase transition-all {selectedBet?.type ===
 							'black'
-								? 'border-[#fbbf24] bg-slate-950 text-white shadow-xl'
-								: 'border-slate-900 text-slate-800 hover:border-white'}">ZWART</button
+								? 'border-white bg-slate-950 text-white shadow-2xl'
+								: 'border-slate-900 bg-black text-slate-800 hover:border-white'}">ZWART</button
 						>
 						<button
 							onclick={() => selectBet('even', null, 'EVEN')}
-							class="rounded-[2.5rem] border-4 py-8 text-sm font-black uppercase transition-all {selectedBet?.type ===
+							class="animate-pulse rounded-[2.5rem] border-8 py-10 text-2xl font-black uppercase transition-all {selectedBet?.type ===
 							'even'
-								? 'border-[#fbbf24] bg-purple-700 text-white shadow-xl'
-								: 'border-purple-900/20 text-purple-900 hover:border-purple-600'}">EVEN</button
+								? 'border-white bg-purple-700 text-white shadow-2xl'
+								: 'border-purple-900/40 bg-black text-purple-900 hover:border-purple-600'}"
+							>EVEN</button
 						>
 						<button
 							onclick={() => selectBet('odd', null, 'ONEVEN')}
-							class="rounded-[2.5rem] border-4 py-8 text-sm font-black uppercase transition-all {selectedBet?.type ===
+							class="animate-pulse rounded-[2.5rem] border-8 py-10 text-2xl font-black uppercase transition-all {selectedBet?.type ===
 							'odd'
-								? 'border-[#fbbf24] bg-purple-700 text-white shadow-xl'
-								: 'border-purple-900/20 text-purple-900 hover:border-purple-600'}">ONEVEN</button
+								? 'border-white bg-purple-700 text-white shadow-2xl'
+								: 'border-purple-900/40 bg-black text-purple-900 hover:border-purple-600'}"
+							>ONEVEN</button
 						>
 					</div>
 
 					<!-- Numbers Grid -->
-					<div class="grid grid-cols-6 gap-3">
+					<div class="grid grid-cols-6 gap-4">
 						<button
 							onclick={() => selectBet('number', 0, '0')}
-							class="col-span-6 rounded-[3rem] border-4 py-8 text-xl font-black transition-all {selectedBet?.value ===
+							class="col-span-6 animate-bounce rounded-[3.5rem] border-8 py-10 text-5xl font-black transition-all {selectedBet?.value ===
 							0
-								? 'border-[#fbbf24] bg-emerald-600 text-white shadow-xl'
-								: 'border-emerald-900/10 text-emerald-900 hover:border-emerald-400'}"
+								? 'border-white bg-emerald-600 text-white shadow-2xl'
+								: 'border-emerald-900/20 bg-black text-emerald-900 hover:border-emerald-400'}"
 							>0 (DE KONING)</button
 						>
 						{#each Array(36) as _, i}
@@ -316,12 +318,12 @@
 							{@const isRed = redNumbers.includes(num)}
 							<button
 								onclick={() => selectBet('number', num, num.toString())}
-								class="rounded-2xl border-2 py-6 text-lg font-black transition-all {selectedBet?.value ===
+								class="animate-zoom rounded-2xl border-4 py-8 text-3xl font-black transition-all {selectedBet?.value ===
 								num
-									? 'scale-110 border-[#fbbf24] bg-purple-600 text-white shadow-xl'
+									? 'z-50 scale-125 border-white bg-purple-600 text-white shadow-2xl'
 									: isRed
-										? 'border-red-900/10 text-red-900 hover:border-red-600'
-										: 'border-slate-900 text-slate-800 hover:border-white'}"
+										? 'border-red-900/10 bg-black text-red-900 hover:border-red-600'
+										: 'border-slate-900 bg-black text-slate-800 hover:border-white'}"
 							>
 								{num}
 							</button>
